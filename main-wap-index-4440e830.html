@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>开云 · 资料整理与信息索引</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f6fbf9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #1f3a3a;
+      padding: 1.2rem 1rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* hero 区 */
+    .hero {
+      background: linear-gradient(145deg, #daf1ec 0%, #b7ded6 100%);
+      border-radius: 2.8rem 2.8rem 2rem 2rem;
+      padding: 2.2rem 1.8rem 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 18px -8px rgba(20, 70, 60, 0.15);
+      transition: box-shadow 0.2s;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #0c3d36;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      max-width: 600px;
+      color: #1d544b;
+      font-weight: 350;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: rgba(255,255,255,0.5);
+      padding: 0.2rem 1rem 0.3rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      color: #0a3f37;
+      margin-top: 0.5rem;
+      backdrop-filter: blur(2px);
+    }
+
+    /* 网格卡片 —— 优势区 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.6rem;
+      padding: 1.4rem 1rem 1.2rem;
+      box-shadow: 0 4px 10px rgba(0, 40, 30, 0.06);
+      border: 1px solid #d5ebe5;
+      transition: transform 0.1s ease, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #35b39c;
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #115a4c;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card h3::before {
+      content: "⊡";
+      font-size: 1.4rem;
+      color: #2c9e89;
+      line-height: 1;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2f554b;
+    }
+
+    /* 说明区 — 折叠卡片风格 */
+    .info-section {
+      background: #e9f3ef;
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem 2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .info-section h2 {
+      font-size: 1.5rem;
+      font-weight: 450;
+      color: #0c463b;
+      margin-bottom: 1rem;
+      border-left: 5px solid #2faa8f;
+      padding-left: 0.9rem;
+    }
+
+    .info-block {
+      background: #ffffffda;
+      backdrop-filter: blur(2px);
+      border-radius: 1.4rem;
+      padding: 1.2rem 1.3rem;
+      margin-bottom: 1rem;
+      border: 1px solid #b7d9cf;
+    }
+
+    .info-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-block p {
+      font-size: 0.98rem;
+      color: #1f463e;
+    }
+
+    .info-block .label {
+      font-weight: 500;
+      color: #0d6e5b;
+      display: inline-block;
+      margin-right: 0.4rem;
+    }
+
+    .info-block i {
+      font-style: normal;
+      background: #c1e3da;
+      padding: 0.1rem 0.6rem;
+      border-radius: 1rem;
+      font-size: 0.8rem;
+      color: #12493d;
+    }
+
+    /* FAQ 摘要 */
+    .faq-summary {
+      background: white;
+      border-radius: 2rem;
+      padding: 1.6rem 1.5rem 1.8rem;
+      margin: 1.8rem 0 2rem;
+      box-shadow: 0 6px 12px rgba(20, 70, 60, 0.06);
+    }
+
+    .faq-summary h2 {
+      font-size: 1.4rem;
+      font-weight: 450;
+      color: #0e4c3f;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .faq-summary h2::after {
+      content: "❓";
+      font-size: 1.2rem;
+      opacity: 0.6;
+    }
+
+    .faq-item {
+      padding: 0.75rem 0 0.5rem;
+      border-bottom: 1px solid #d3e6df;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #115243;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      color: #2b574b;
+      font-size: 0.92rem;
+      padding-left: 0.4rem;
+    }
+
+    /* 底部链接行 */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.6rem 1.2rem;
+      background: #d7ece4;
+      border-radius: 3rem;
+      padding: 1rem 1.6rem;
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+      color: #185247;
+    }
+
+    .footer-links a {
+      color: #115a49;
+      text-decoration: none;
+      border-bottom: 1px dotted #3aa68b;
+      font-weight: 450;
+      transition: border-bottom 0.2s, background 0.1s;
+      padding: 0 0.1rem;
+    }
+
+    .footer-links a:hover {
+      border-bottom: 2px solid #1c846d;
+      background: #bbe3d8;
+      border-radius: 0.2rem;
+    }
+
+    .footer-links .sep {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .fine-print {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #346b5e;
+      margin-top: 1.8rem;
+      opacity: 0.7;
+    }
+
+    /* 响应式 */
+    @media (max-width: 540px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .grid-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem;
+      }
+
+      .info-section, .faq-summary {
+        padding: 1.3rem 1rem;
+      }
+
+      .footer-links {
+        font-size: 0.9rem;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.7;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 区 -->
+  <section class="hero">
+    <h1>开云 · 资料整理与信息索引</h1>
+    <p>从散落的线索中搭建秩序，让资料查找回归平实、高效。这里记录可整合的信息节点，也提供轻量的索引路径。</p>
+    <span class="tagline">📂 整理 · 归类 · 撷取</span>
+  </section>
+
+  <!-- 优势区：网格卡片 -->
+  <div class="grid-cards">
+    <div class="card">
+      <h3>分类陈列</h3>
+      <p>按主题与场景分组，减少检索耗时。卡片式摘要让你快速判断内容是否相关。</p>
+    </div>
+    <div class="card">
+      <h3>轻量引用</h3>
+      <p>每条索引都附有来源提示与简要说明，避免信息断层，也方便二次核查。</p>
+    </div>
+    <div class="card">
+      <h3>更新痕迹</h3>
+      <p>资料修订日期与变动摘要一并留存，你可以感知内容的时效与迭代过程。</p>
+    </div>
+    <div class="card">
+      <h3>场景导向</h3>
+      <p>从日常查询、专题整理到快速比对，不同入口对应不同使用习惯。</p>
+    </div>
+  </div>
+
+  <!-- 说明区：资料整理角度 -->
+  <section class="info-section">
+    <h2>索引视角 · 说明</h2>
+    <div class="info-block">
+      <p><span class="label">📌 整理逻辑</span> 围绕「信息源 — 摘要 — 关联条目」三层结构。每一条资料都经过归类与精简，不堆砌原文，只保留可索引的关键描述。</p>
+    </div>
+    <div class="info-block">
+      <p><span class="label">🔗 关联参考</span> 类似主题的资料之间设有相互引用，方便你在翻阅时自然跳转，形成自己的浏览脉络。这里的索引系统是开放的，你可以基于它扩展自己的笔记。</p>
+    </div>
+    <div class="info-block">
+      <p><span class="label">⏳ 版本备忘</span> 部分条目附有「更新于 2025.04」「内容核查 v2」等标记，帮助判断资料的整理时间。如果你发现过时或错漏的内容，欢迎反馈。</p>
+    </div>
+  </section>
+
+  <!-- FAQ 摘要 -->
+  <section class="faq-summary">
+    <h2>常见疑问摘要</h2>
+    <div class="faq-item">
+      <div class="faq-q">这些索引来自哪里？</div>
+      <div class="faq-a">主要来自公开资料、用户投稿以及由社区整理的参考列表，经过筛选和重述后收录于此。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">可以直接搜索某个具体条目吗？</div>
+      <div class="faq-a">当前页面聚焦于分类概览，暂未提供站内搜索。你可以使用浏览器「在页面中查找」功能，或浏览分类卡片。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">信息多久更新一次？</div>
+      <div class="faq-a">视资料变动情况而定，通常每周会做一次小范围核对。重大变化会单独标注。</div>
+    </div>
+  </section>
+
+  <!-- 底部链接 + 自然嵌入“开云”链接 -->
+  <div class="footer-links">
+    <span>🔖 索引工具 ·</span>
+    <a href="https://main-wap-kai-yun.com">开云</a>
+    <span class="sep">·</span>
+    <span>浏览指南</span>
+    <span class="sep">·</span>
+    <span>内容规范</span>
+    <span class="sep">·</span>
+    <span>反馈</span>
+  </div>
+
+  <div class="fine-print">
+    资料整理索引 · 仅供个人参考 · 内容来源见各条目备注
+  </div>
+
+</div>
+</body>
+</html>
