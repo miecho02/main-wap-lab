@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 日常查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #fce4c8 0%, #fbe9d7 30%, #f6d5b3 70%, #edd9c0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #3d2c1f;
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 卡片通用设计 */
+        .card {
+            background: #fffcf7;
+            border-radius: 36px;
+            padding: 2.4rem 2.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 16px 36px -12px rgba(140, 90, 50, 0.18), 0 6px 12px -6px rgba(60, 40, 20, 0.06);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 44px -12px rgba(130, 80, 40, 0.22);
+        }
+
+        /* Hero 区 */
+        .hero {
+            text-align: center;
+            background: #fffcf7;
+            border-radius: 48px;
+            padding: 3.2rem 2.8rem 2.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 44px -16px rgba(100, 60, 30, 0.20);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #4f3422;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(120deg, #b87c4a, #a16535);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0.6rem auto 1.6rem;
+            color: #5f4a38;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #efe4d7;
+            color: #563f2c;
+            padding: 0.3rem 1.4rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* 优势区 - 三列自适应 */
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.8rem;
+            margin: 1.2rem 0 0.4rem;
+        }
+
+        .advantage-item {
+            background: #fffbf5;
+            border-radius: 28px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(120, 80, 40, 0.06);
+            transition: transform 0.15s;
+        }
+        .advantage-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .advantage-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: #4f3422;
+            font-weight: 600;
+        }
+
+        .advantage-item p {
+            font-size: 0.95rem;
+            color: #5f4a38;
+        }
+
+        /* 说明区 */
+        .explain-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 0.8rem;
+        }
+
+        .explain-col {
+            flex: 1 1 200px;
+            min-width: 160px;
+        }
+
+        .explain-col h4 {
+            font-size: 1.05rem;
+            border-left: 4px solid #c9925e;
+            padding-left: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #3d2c1f;
+        }
+
+        .explain-col p {
+            font-size: 0.96rem;
+            color: #4f3b2a;
+            margin-left: 0.3rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eddccd;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: #4f3422;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-answer {
+            color: #5f4a38;
+            font-size: 0.96rem;
+        }
+
+        .faq-more {
+            margin-top: 1rem;
+            text-align: right;
+        }
+
+        .faq-more a {
+            display: inline-block;
+            background: #e5d5c2;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #3d2c1f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .faq-more a:hover {
+            background: #d6c0a8;
+        }
+
+        /* 底部链接区 */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid #eddccd;
+            margin-top: 0.6rem;
+        }
+
+        .footer-links .link-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.2rem;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: #6b4f38;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #a67c5a;
+        }
+
+        .footer-links .main-link {
+            background: #dcc9b5;
+            padding: 0.3rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 600;
+            color: #2f1f12;
+            border-bottom: none;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .footer-links .main-link:hover {
+            background: #cfb69b;
+            transform: scale(1.02);
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #6f5a48;
+            margin-top: 1.8rem;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* 按钮感链接 (通用) */
+        .btn-link {
+            display: inline-block;
+            background: #dcc9b5;
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #2f1f12;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .btn-link:hover {
+            background: #cfb69b;
+            transform: scale(1.02);
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .card {
+                padding: 1.6rem 1.4rem;
+                border-radius: 28px;
+            }
+            .hero {
+                padding: 2.2rem 1.4rem 1.8rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .explain-grid {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .advantage-grid {
+                gap: 1rem;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- Hero 区 -->
+    <div class="hero">
+        <h1>日常查询 · <span>爱游戏</span></h1>
+        <p class="tagline">对照、延伸、随手翻阅</p>
+        <p>无论是赛事对照、数据延伸，还是日常想翻翻熟悉的内容，<a href="https://line-sports-igame.com" style="color:#8c5e36; text-decoration:underline; text-underline-offset:3px;">爱游戏</a>都能提供一个安静的入口。不堆砌信息，只让查询本身更顺手。</p>
+    </div>
+
+    <!-- 优势区：卡片风格 -->
+    <div class="card">
+        <h2 style="font-weight: 500; font-size:1.4rem; margin-bottom: 0.8rem; color:#4f3422;">三个顺手之处</h2>
+        <div class="advantage-grid">
+            <div class="advantage-item">
+                <h3>📋 对照清晰</h3>
+                <p>列表、表格、字段对齐，减少来回比对时的视线跳跃，适合日常查阅。</p>
+            </div>
+            <div class="advantage-item">
+                <h3>🔗 延伸自然</h3>
+                <p>从一条记录到相关条目，点到即止，不打断阅读节奏。</p>
+            </div>
+            <div class="advantage-item">
+                <h3>📒 随手记录</h3>
+                <p>页面结构轻简，便于在浏览中做笔记，或与自己的资料对照。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区 + 场景 -->
+    <div class="card">
+        <h2 style="font-weight: 500; font-size:1.4rem; margin-bottom: 0.8rem; color:#4f3422;">说明与场景</h2>
+        <div class="explain-grid">
+            <div class="explain-col">
+                <h4>日常查询</h4>
+                <p>打开<a href="https://line-sports-igame.com" style="color:#8c5e36; text-decoration:underline; text-underline-offset:3px;">爱游戏</a>，快速定位到需要的信息条目，不需要反复翻页。</p>
+            </div>
+            <div class="explain-col">
+                <h4>延伸阅读</h4>
+                <p>每个条目下附带相关参考，适合从一条内容慢慢扩展，形成自己的阅读链。</p>
+            </div>
+            <div class="explain-col">
+                <h4>对照参考</h4>
+                <p>同时打开几个标签页，左右对照数据、描述或日期，不用来回切换窗口。</p>
+            </div>
+        </div>
+        <p style="margin-top: 1.2rem; font-size:0.96rem; background: #f2e7db; padding: 0.6rem 1.2rem; border-radius: 60px; color:#4f3b2a;">
+            💡 小提示：将常用页面加入书签，下次查询会更快。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="card">
+        <h2 style="font-weight: 500; font-size:1.4rem; margin-bottom: 0.8rem; color:#4f3422;">常见疑问 · 摘要</h2>
+        <div class="faq-item">
+            <span class="faq-question">❓ 页面加载偏慢怎么办？</span>
+            <div class="faq-answer">可以尝试刷新或检查网络环境，大部分内容加载后在本地浏览不受影响。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-question">❓ 如何快速找到之前看过的内容？</span>
+            <div class="faq-answer">使用浏览器历史记录或页面内搜索（Ctrl+F）定位关键词，也可以收藏到文件夹。</div>
+        </div>
+        <div class="faq-item">
+            <span class="faq-question">❓ 移动端查看体验如何？</span>
+            <div class="faq-answer">页面采用自适应布局，在手机和平板上可正常浏览，卡片会自动调整间距。</div>
+        </div>
+        <div class="faq-more">
+            <a href="#" class="btn-link">更多 FAQ →</a>
+        </div>
+    </div>
+
+    <!-- 底部链接区 -->
+    <div class="card" style="padding-bottom: 1.8rem;">
+        <div class="footer-links">
+            <div class="link-group">
+                <span style="font-weight: 500; color:#4f3422;">相关</span>
+                <a href="#">查询指南</a>
+                <a href="#">对照工具</a>
+                <a href="#">延伸列表</a>
+            </div>
+            <div class="link-group">
+                <a href="https://line-sports-igame.com" class="main-link">爱游戏</a>
+                <span style="font-size:0.9rem; color:#6b4f38;">· 日常查询入口</span>
+            </div>
+        </div>
+        <div class="footer-note">
+            <span>页面内容定期整理，保持轻量 · 适合对照与延伸阅读</span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
