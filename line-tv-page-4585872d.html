@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 资料索引与信息整理 | line-tv-igame.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf7f2;
+            font-family: "Noto Serif SC", "Source Han Serif SC", "Georgia", "Times New Roman", serif;
+            color: #2c3e4f;
+            line-height: 1.75;
+            padding: 2rem 1.5rem;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #fefdfa;
+            padding: 3rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Hero 区 */
+        .hero {
+            margin-bottom: 3.2rem;
+            border-bottom: 1px solid #e8e0d6;
+            padding-bottom: 2.2rem;
+        }
+
+        .hero h1 {
+            font-weight: 500;
+            font-size: 2.4rem;
+            letter-spacing: 0.02em;
+            color: #1f2c3a;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero .subhead {
+            font-size: 1rem;
+            color: #5a6b7a;
+            border-left: 3px solid #b4a898;
+            padding-left: 1rem;
+            margin: 0.6rem 0 0.8rem 0;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #3d4f5e;
+            max-width: 700px;
+        }
+
+        /* 信息卡片 / 优势区 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin: 2.8rem 0 2.8rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1.4rem;
+            }
+            .page {
+                padding: 2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .faq-item {
+                padding: 0.8rem 0 1rem 0;
+            }
+        }
+
+        .feature-item {
+            background: #f8f4ee;
+            padding: 1.6rem 1.6rem 1.8rem 1.6rem;
+            border-radius: 12px;
+            border-left: 4px solid #bfa98c;
+        }
+
+        .feature-item h3 {
+            font-size: 1.18rem;
+            font-weight: 500;
+            color: #2a3b4a;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #3d5364;
+        }
+
+        /* 说明区（引用块） */
+        .notice-block {
+            background: #f3efe8;
+            border-left: 6px solid #cbb295;
+            padding: 1.5rem 2rem;
+            margin: 2.4rem 0 2.8rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .notice-block p {
+            font-size: 0.98rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .notice-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .notice-block .source-tag {
+            display: inline-block;
+            background: #d9cec0;
+            color: #2b3a44;
+            font-size: 0.75rem;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 0.03em;
+            margin-top: 0.2rem;
+        }
+
+        /* 场景 / 细分说明（替代说明区） */
+        .scenario-wrap {
+            margin: 2.6rem 0 2.2rem 0;
+        }
+
+        .scenario-wrap h2 {
+            font-weight: 500;
+            font-size: 1.4rem;
+            border-bottom: 1px solid #e6ddd2;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.2rem;
+            color: #1f2c3a;
+        }
+
+        .scenario-list {
+            list-style: none;
+        }
+
+        .scenario-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .scenario-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #a78c74;
+        }
+
+        /* FAQ 摘要 */
+        .faq-section {
+            margin: 3rem 0 2rem 0;
+        }
+
+        .faq-section h2 {
+            font-weight: 500;
+            font-size: 1.4rem;
+            color: #1f2c3a;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #e6ddd2;
+            padding-bottom: 0.4rem;
+        }
+
+        .faq-item {
+            padding: 1rem 0 1.2rem 0;
+            border-bottom: 1px dashed #e1d7cb;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #2b4152;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item .a {
+            font-size: 0.95rem;
+            color: #4a5f6e;
+            padding-left: 0.6rem;
+            border-left: 2px solid #dacfc2;
+        }
+
+        /* 底部链接区 */
+        .footer-links {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2d8cc;
+            font-size: 0.95rem;
+            color: #3f5565;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #3f5e74;
+            text-decoration: none;
+            border-bottom: 1px dotted #b9aa99;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #1b2c3b;
+            border-bottom: 1px solid #7f6855;
+        }
+
+        .footer-links .site-meta {
+            font-size: 0.88rem;
+            color: #6d7d8a;
+        }
+
+        .inline-link {
+            color: #3f5e74;
+            text-decoration: none;
+            border-bottom: 1px dotted #b9aa99;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #7f6855;
+            color: #1b2c3b;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ece3d8;
+            margin: 2rem 0;
+        }
+
+        /* 统一间距 */
+        .mt-1 { margin-top: 0.8rem; }
+        .mb-1 { margin-bottom: 0.8rem; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- Hero 区 -->
+    <div class="hero">
+        <h1>爱游戏 · 资料索引</h1>
+        <div class="subhead">信息整理 · 场景归类 · 常见问题摘要</div>
+        <p>围绕 <a href="https://line-tv-igame.com" class="inline-link">爱游戏</a> 平台的内容聚合与结构说明，侧重资料查阅、索引逻辑与信息密度，非评价类页面。</p>
+    </div>
+
+    <!-- 优势区（卡片风格） -->
+    <div class="feature-grid">
+        <div class="feature-item">
+            <h3>分类索引结构</h3>
+            <p>按内容主题、更新频次、格式类型划分条目，便于快速定位特定信息区。</p>
+        </div>
+        <div class="feature-item">
+            <h3>一致性标注</h3>
+            <p>每条资料附带上下文标签与来源简述，降低重复筛选成本。</p>
+        </div>
+        <div class="feature-item">
+            <h3>轻量化展示</h3>
+            <p>卡片式摘要 + 折叠逻辑（本页以摘要呈现），保持页面可读性。</p>
+        </div>
+        <div class="feature-item">
+            <h3>低噪背景</h3>
+            <p>米白基调与低对比度文字，适合长时间阅读与资料比对。</p>
+        </div>
+    </div>
+
+    <!-- 说明区（引用块 / 提示框） -->
+    <div class="notice-block">
+        <p><strong>资料说明</strong> · 本页所整理的条目均基于公开可访问的信息源，并经过基础去重与归类。索引仅提供概要，详细内容请通过对应链接进入对应页面。</p>
+        <p>平台信息结构可能随时间调整，建议定期核对原始出处。如需反馈或修正条目，可参考底部联系线索。</p>
+        <span class="source-tag">索引版本 · 2025</span>
+    </div>
+
+    <!-- 说明区：从资料整理与索引角度展开 -->
+    <div class="scenario-wrap">
+        <h2>信息索引场景举例</h2>
+        <ul class="scenario-list">
+            <li><strong>主题筛选</strong> — 将内容按「游戏类别」「活动专题」「版本记录」做一级分类，每类下设标签式摘要，方便横向对比。</li>
+            <li><strong>时间线索引</strong> — 对带有发布时间的条目按年月排列，形成轻量更新日志，适合追踪变化轨迹。</li>
+            <li><strong>交叉引用</strong> — 部分条目同时归属多个类别，采用双向备注（如“参见活动专题/版本记录”），提升查找容错率。</li>
+            <li><strong>摘要前置</strong> — 每条索引包含15–30字的概要，配合关键字段（日期、标签、作者），减少反复点开确认的次数。</li>
+        </ul>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-section">
+        <h2>常见问题摘要</h2>
+        <div class="faq-item">
+            <div class="q">Q：索引覆盖的范围有哪些？</div>
+            <div class="a">目前以主站内公开栏目为主，包括但不限于内容列表、分类页、专题聚合以及部分静态说明页。不收录个人页面或外部嵌入内容。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：索引更新频率如何？</div>
+            <div class="a">基于源站结构变动与内容增删做不定期同步。重大结构调整时会更新索引分类框架，日常增量内容按月合并。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：是否包含所有子页面？</div>
+            <div class="a">目前以一级、二级目录为主，深层页面（三级或动态参数页）视重要程度选择性收录。完整列表请结合站点地图使用。</div>
+        </div>
+    </div>
+
+    <!-- 底部链接区 -->
+    <div class="footer-links">
+        <span>
+            <a href="https://line-tv-igame.com">爱游戏</a> · 资料索引
+        </span>
+        <span class="site-meta">
+            结构化整理 · 非官方页面
+        </span>
+    </div>
+</div>
+</body>
+</html>
